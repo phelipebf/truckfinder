@@ -276,6 +276,7 @@
 /home/android-sdk/Cordova/TruckFinder/platforms/android/assets/www/assets/css/snap.css \
 /home/android-sdk/Cordova/TruckFinder/platforms/android/assets/www/assets/css/topcoat-mobile-light.min.css \
 /home/android-sdk/Cordova/TruckFinder/platforms/android/assets/www/assets/css/fastgap.min.css \
+/home/android-sdk/Cordova/TruckFinder/platforms/android/assets/www/assets/img/logo.png \
 /home/android-sdk/Cordova/TruckFinder/platforms/android/assets/www/assets/img/back.png \
 /home/android-sdk/Cordova/TruckFinder/platforms/android/assets/www/assets/img/fastgap_logo.jpg \
 /home/android-sdk/Cordova/TruckFinder/platforms/android/assets/www/css/index.css \

@@ -7,22 +7,45 @@
 
             // Initialize the map view
             map = plugin.google.maps.Map.getMap(div);
-
+                        
             // Wait until the map is ready status.
-            //map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
+            map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
         }, false);
-
-        /* function onMapReady() {
-            var button = document.getElementById("button");
-            button.addEventListener("click", onBtnClicked, false);
+        
+        function onMapReady() {
+            map.getMyLocation(onSuccess, onError);        
         }
 
-        function onBtnClicked() {
-            map.showDialog();
-        } */
+        function onSuccess(location) {
+         var msg = ["Current your location:\n",
+          "latitude:" + location.latLng.lat,
+          "longitude:" + location.latLng.lng,
+          "speed:" + location.speed,
+          "time:" + location.time,
+          "bearing:" + location.bearing].join("\n");
+      
+          map.animateCamera({
+                //'position': location.latLng,
+                'target': {
+                    lat: location.latLng.lat,
+                    lng: location.latLng.lng
+                },
+                'tilt': 60,
+                'zoom': 18,
+                'bearing': 140
+            });
+        }
+
+        function onError(msg) {
+            alert("error: " + msg);
+        }      
+    
+    /* function onBtnClicked() {
+        map.showDialog();
+    } */
     </script>
 
-    <div class='page-item' style="width:100%;height:100%;" id="map_canvas"></div>
+    <div class='page-item' style="width:100%;height:430px" id="map_canvas"></div>
 
     <!-- <div class='page-item'>
             <p>FastGap é um template feito por brasileiros para iniciar o desenvolvimento de apps nativos para smartphones utilizando o PhoneGap.</p>

@@ -5,8 +5,9 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 #menu ul li {
-  color: #A02615;
-  font-weight: bold; }
+  color: #000000;
+  //font-weight: bold; 
+}
 
 #scroll {
   padding: 10px;
@@ -80,7 +81,7 @@ body {
 header#header-app {
   height: 55px;
   text-align: center;
-  background: #ab0207 url('../img/fastgap_logo.jpg') no-repeat center;
+  background: #ff6c36 url('../img/logo.png') no-repeat center;
 }
 /* BOX LOAD PAGES */
 
