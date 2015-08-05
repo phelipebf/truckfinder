@@ -10,7 +10,7 @@ body {
 }
 
 #scroll {
-  padding: 10px;
+  //padding: 10px;
   box-sizing: border-box; }
 
 #content {
@@ -106,7 +106,7 @@ header#header-app {
 /* MENU APP */
 
 menu {
-  width: 180px;
+  width: 0px;
   height: 100%;
   border-right: 1px solid #ccc;
 }

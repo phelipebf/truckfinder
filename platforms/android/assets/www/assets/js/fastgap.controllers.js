@@ -31,7 +31,8 @@ var HomeController = function () {};
 HomeController.prototype = {
 	self: Object,
 	initialize: function () {
-	    
+	    //$("#map_canvas").height(window.innerHeight - FG.$headerApp.height());
+            //$("#map_canvas").height(500);            
 	},
 	destroy: function () {
 		// unset events
