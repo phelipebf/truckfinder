@@ -7,65 +7,75 @@
         
         document.addEventListener("deviceready", function () {
             
+            // Define tamanho do mapa pra tela toda - altura do top header
             $("#map_canvas").height(window.innerHeight - FG.$headerApp.height());
             
             var div = document.getElementById("map_canvas");
                         
             // Initialize the map view
-            map = plugin.google.maps.Map.getMap(div);
+            map = plugin.google.maps.Map.getMap(div, {
+                'controls': {
+                    'compass': true,
+                    'myLocationButton': true,
+                    'indoorPicker': true,
+                    'zoom': true
+                }
+            });
                         
             // Wait until the map is ready status.
             map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
         }, false);
-        
+                
         function onMapReady() {
             
-            map.getMyLocation(onSuccess, onError);
+            // Seta o foco do mapa no local atual do usuário/GPS
+            map.getMyLocation(onSuccessGettingLocation, onErrorGettingLocation);
             
+            // Markers
+            // TODO: Implementar serviço REST para markers
             var trucks = [
-                {"latlng":[-15.879222, -48.012081],name:"Burguer Truck"},
-                {"latlng":[-15.878773, -48.014715],name:"Chili na Rua"},
-                {"latlng":[-15.881348, -48.014130],name:"Sushi Truck"},
-                {"latlng":[-15.883304, -48.012301],name:"Sucopira"},
+                {"latlng":[-15.879222, -48.012081], name:"Burguer Truck", snip:"Hoje, 14:00 - 20:00"},
+                {"latlng":[-15.878773, -48.014715], name:"Chili na Rua", snip:"Hoje, 14:00 - 20:00"},
+                {"latlng":[-15.881348, -48.014130], name:"Sushi Truck", snip:"Hoje, 14:00 - 20:00"},
+                {"latlng":[-15.883304, -48.012301], name:"Sucopira", snip:"Hoje, 14:00 - 20:00"},
             ];
               
+            // Itera a lista de markers e adiciona os markers no mapa
             var bounds = trucks.map(function(info) {
                 var latLng = new plugin.google.maps.LatLng(info.latlng[0], info.latlng[1]);
-                
+                                
                 map.addMarker({
                     "position": latLng,
-                    "title": info.name
+                    "title": info.name,
+                    "snippet": info.snip,
+                    icon: "orange"
                 }, function(marker) {
                         marker.showInfoWindow();
 
+                        // Ao clicar no info window (balão informativo) acima
+                        // do marker, abre sistema de navegação do aparelho
                         marker.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {
                             plugin.google.maps.external.launchNavigation({
                                 "from": myLocation,
                                 "to": latLng
                             });
                         });
-                    });                
+                    }
+                );                
                 
                 return latLng;
-              });
+            });
               
             map.moveCamera({
                 "target": bounds
             });
         }
 
-        function onSuccess(location) {
-         var msg = ["Localidade:\n",
-          "latitude:" + location.latLng.lat,
-          "longitude:" + location.latLng.lng,
-          "speed:" + location.speed,
-          "time:" + location.time,
-          "bearing:" + location.bearing].join("\n").toString();
-      
+        function onSuccessGettingLocation(location) 
+        {
           myLocation = location.latLng;
       
-          map.animateCamera({
-                //'position': location.latLng,
+          map.animateCamera({                
                 'target': {
                     lat: location.latLng.lat,
                     lng: location.latLng.lng
@@ -76,8 +86,16 @@
             });
         }
 
-        function onError(msg) {
-            alert("Erro: " + msg);
+        function onErrorGettingLocation(location) 
+        {
+            var msg = ["Localidade:\n",
+                        "latitude:" + location.latLng.lat,
+                        "longitude:" + location.latLng.lng,
+                        "speed:" + location.speed,
+                        "time:" + location.time,
+                        "bearing:" + location.bearing].join("\n").toString();            
+            
+            alert("Erro: Impossível determinar localização\n" + msg);
         }      
     
     /* function onBtnClicked() {
