@@ -1,13 +1,16 @@
 <div id="internal-page">
 
     <script type="text/javascript">
+        
         var map;
+        var myLocation = null;        
+        
         document.addEventListener("deviceready", function () {
             
             $("#map_canvas").height(window.innerHeight - FG.$headerApp.height());
             
             var div = document.getElementById("map_canvas");
-
+                        
             // Initialize the map view
             map = plugin.google.maps.Map.getMap(div);
                         
@@ -16,16 +19,50 @@
         }, false);
         
         function onMapReady() {
-            map.getMyLocation(onSuccess, onError);        
+            
+            map.getMyLocation(onSuccess, onError);
+            
+            var trucks = [
+                {"latlng":[-15.879222, -48.012081],name:"Burguer Truck"},
+                {"latlng":[-15.878773, -48.014715],name:"Chili na Rua"},
+                {"latlng":[-15.881348, -48.014130],name:"Sushi Truck"},
+                {"latlng":[-15.883304, -48.012301],name:"Sucopira"},
+            ];
+              
+            var bounds = trucks.map(function(info) {
+                var latLng = new plugin.google.maps.LatLng(info.latlng[0], info.latlng[1]);
+                
+                map.addMarker({
+                    "position": latLng,
+                    "title": info.name
+                }, function(marker) {
+                        marker.showInfoWindow();
+
+                        marker.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {
+                            plugin.google.maps.external.launchNavigation({
+                                "from": myLocation,
+                                "to": latLng
+                            });
+                        });
+                    });                
+                
+                return latLng;
+              });
+              
+            map.moveCamera({
+                "target": bounds
+            });
         }
 
         function onSuccess(location) {
-         var msg = ["Current your location:\n",
+         var msg = ["Localidade:\n",
           "latitude:" + location.latLng.lat,
           "longitude:" + location.latLng.lng,
           "speed:" + location.speed,
           "time:" + location.time,
-          "bearing:" + location.bearing].join("\n");
+          "bearing:" + location.bearing].join("\n").toString();
+      
+          myLocation = location.latLng;
       
           map.animateCamera({
                 //'position': location.latLng,
@@ -40,7 +77,7 @@
         }
 
         function onError(msg) {
-            alert("error: " + msg);
+            alert("Erro: " + msg);
         }      
     
     /* function onBtnClicked() {
