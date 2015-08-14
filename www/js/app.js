@@ -1,7 +1,6 @@
 var app = angular.module("truckfinder", [
     'ngMaterial', 
-    'ngRoute', 
-    'ngCordova',
+    'ngRoute',     
     'appControllers'
     //,'appServices'
 ]);

@@ -31,15 +31,10 @@ appControllers.controller('Mapa', function($scope){
         var map = null;
         var myLocation = null;
         
+        // Define tamanho do mapa pra tela toda - altura do top header
         $scope.height = window.innerHeight - document.getElementsByTagName('md-toolbar')[0].clientHeight;
-        
-        //alert(document.getElementsByTagName('md-toolbar')[0].clientHeight);
-        //alert(window.innerHeight);
-                        
+                                        
         document.addEventListener("deviceready", function () {
-                               
-            // Define tamanho do mapa pra tela toda - altura do top header
-            //document.getElementById("map_canvas").height = '500px';
                                         
             var div = document.getElementById("map_canvas");
         
