@@ -1,0 +1,23 @@
+.md-toolbar-tools h1 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: inherit;
+}
+
+.menudemoMenuWidth .md-menu-demo {
+  padding: 24px; 
+}
+.menudemoMenuWidth .menu-demo-container {
+  min-height: 200px; 
+}
+.menudemoMenuWidth .menus {
+  width: 100%;
+}
+
+#internal-page {
+  width: 100%; 
+}
+
+.md-pad {
+    padding: 0px !important;
+}
