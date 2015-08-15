@@ -1,7 +1,0 @@
-languages:
-  JavaScript: true  
-exclude_paths:
-- "www/bower_components/*"
-- "hooks/*"
-- "platforms/*"
-- "plugins/*"

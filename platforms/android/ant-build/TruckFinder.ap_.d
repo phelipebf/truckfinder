@@ -271,6 +271,7 @@
 /home/android-sdk/Cordova/TruckFinder/platforms/android/assets/www/img/logo.png \
 /home/android-sdk/Cordova/TruckFinder/platforms/android/assets/www/img/icons/menu.svg \
 /home/android-sdk/Cordova/TruckFinder/platforms/android/assets/www/img/icons/more_vert.svg \
+/home/android-sdk/Cordova/TruckFinder/platforms/android/assets/www/img/icons/arrow_back.svg \
 /home/android-sdk/Cordova/TruckFinder/platforms/android/assets/www/bower_components/fastclick \
 /home/android-sdk/Cordova/TruckFinder/platforms/android/assets/www/bower_components/fastclick/lib \
 /home/android-sdk/Cordova/TruckFinder/platforms/android/assets/www/bower_components/fastclick/README.md \
