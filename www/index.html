@@ -33,10 +33,14 @@
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">
         <md-button ng-click="toggleSidenav('left')" class="md-icon-button">
-          <md-icon aria-label="Menu" md-svg-icon="img/icons/menu.svg"></md-icon>
+            <md-icon aria-label="Menu" md-svg-icon="img/icons/menu.svg"></md-icon>
         </md-button>
         <h1>TruckFinder</h1>
         <span flex></span>           
+        
+        <md-button ng-click="toggleSidenav('left')" class="md-icon-button">
+            <md-icon aria-label="Menu" md-svg-icon="img/icons/more_vert.svg"></md-icon>
+        </md-button>
 
         <!--<div class="md-menu-demo" ng-controller="WidthDemoCtrl as ctrl" style="min-height: 400px">
           <div class="menu-demo-container" layout-align="center center" layout="column">            
@@ -82,7 +86,7 @@
                 <md-button ng-click="close()" class="md-icon-button">
                     <md-icon aria-label="Menu" md-svg-icon="img/icons/menu.svg"></md-icon>
                 </md-button>
-                <h1 class="md-toolbar-tools">Burguer Truck</h1>
+                <h1 class="md-toolbar-tools">Food Truck Logado</h1>
             </md-toolbar>
             <md-content ng-controller="LeftCtrl" layout-padding>
                 <!--<ul class="sidenav-menu">
