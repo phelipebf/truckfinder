@@ -1,8 +1,8 @@
 languages:
-  Ruby: false
+  Ruby: true
   JavaScript: true
-  Python: false
-  PHP: false
+  Python: true
+  PHP: true
 exclude_paths:
 - "www/bower_components/*"
 - "hooks/*"
