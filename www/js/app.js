@@ -20,6 +20,10 @@ app.config(function($mdThemingProvider, $routeProvider) {
         templateUrl: "templates/mapa.html",
         controller: "Mapa"
     })
+    .when("/truck/:id",{
+        templateUrl: "templates/truck.html",
+        controller: "Truck"
+    })
     .when("/cardapio/:id",{
         templateUrl: "templates/cardapio.html",
         controller: "Cardapio"

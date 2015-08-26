@@ -10,7 +10,7 @@ appControllers.controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $l
     $scope.close = function () {
       $mdSidenav('left').close()
         .then(function () {
-            $log.debug("close LEFT is done");            
+            //$log.debug("close LEFT is done");            
         });        
     };
     
@@ -26,7 +26,7 @@ appControllers.controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $l
     }];
   });
   
-appControllers.controller('Mapa', function($scope){
+appControllers.controller('Mapa', function($scope, $location, $window){
         
         var map = null;
         var myLocation = null;
@@ -66,11 +66,11 @@ appControllers.controller('Mapa', function($scope){
                 function (location) 
                 {
                     var msg = ["Localidade:\n",
-                                "latitude:" + location.latLng.lat,
-                                "longitude:" + location.latLng.lng,
-                                "speed:" + location.speed,
-                                "time:" + location.time,
-                                "bearing:" + location.bearing].join("\n").toString();            
+                                "latitude: " + location.latLng.lat,
+                                "longitude: " + location.latLng.lng,
+                                "speed: " + location.speed,
+                                "time: " + location.time,
+                                "bearing: " + location.bearing].join("\n").toString();            
 
                     alert("Erro: Impossível determinar localização\n" + msg);
                 });
@@ -78,10 +78,10 @@ appControllers.controller('Mapa', function($scope){
                 // Markers
                 // TODO: Implementar serviço REST para buscar markers/trucks
                 var trucks = [
-                    {"latlng":[-15.879222, -48.012081], name:"Burguer Truck", snippet:"Hoje, 14:00 - 20:00"},
-                    {"latlng":[-15.878773, -48.014715], name:"Chili na Rua", snippet:"Hoje, 14:00 - 20:00"},
-                    {"latlng":[-15.881348, -48.014130], name:"Sushi Truck", snippet:"Hoje, 14:00 - 20:00"},
-                    {"latlng":[-15.883304, -48.012301], name:"Sucopira", snippet:"Hoje, 14:00 - 20:00"},
+                    {id:2, "latlng":[-15.879222, -48.012081], name:"Burguer Truck", snippet:"Hoje, 14:00 - 20:00"},
+                    {id:13, "latlng":[-15.878773, -48.014715], name:"Chili na Rua", snippet:"Hoje, 14:00 - 20:00"},
+                    {id:42, "latlng":[-15.881348, -48.014130], name:"Sushi Truck", snippet:"Hoje, 14:00 - 20:00"},
+                    {id:66, "latlng":[-15.883304, -48.012301], name:"Sucopira", snippet:"Hoje, 14:00 - 20:00"},
                 ];
 
                 // Itera a lista de markers e adiciona os markers no mapa
@@ -96,13 +96,19 @@ appControllers.controller('Mapa', function($scope){
                     }, function(marker) {
                             marker.showInfoWindow();
 
-                            // Ao clicar no info window (balão informativo) acima
-                            // do marker, abre sistema de navegação do aparelho
+                            /**
+                             * Ao clicar no info window (balão informativo) acima
+                             * do marker, chama sistema de navegação do aparelho 
+                             */
                             marker.addEventListener(plugin.google.maps.event.INFO_CLICK, function() {
-                                plugin.google.maps.external.launchNavigation({
+                                //$location.url('/truck/44');
+                                $window.location.href = "#/truck/" + info.id;
+                                
+                                
+                                /* plugin.google.maps.external.launchNavigation({
                                     "from": myLocation,
                                     "to": latLng
-                                });
+                                }); */
                             });
                         }
                     );                
@@ -122,9 +128,15 @@ appControllers.controller('Mapa', function($scope){
     console.log("Carregou Mapa (route)");
 });
 
+appControllers.controller('Truck', function($scope, $routeParams){    
+    $scope.id = $routeParams.id;
+    $scope.height = window.innerHeight - document.getElementsByTagName('md-toolbar')[0].clientHeight;
+    console.log("Carregou Truck: " + $scope.id + " (route)");
+});
+
 appControllers.controller('Cardapio', function($scope, $routeParams){    
     $scope.id = $routeParams.id;
-    console.log("Carregou Cardapio (route)");
+    console.log("Carregou Cardapio: " + $scope.id + " (route)");
 });
 
 appControllers.controller('WidthDemoCtrl', DemoCtrl);
